@@ -6,7 +6,12 @@ const cron = require("node-cron");
 const bot = new Telegraf(BOT_TOKEN);
 let chatId;
 let idArr = [];
-bot.start((ctx) => ctx.reply("Welcome Robert!"));
+bot.start((ctx) => {
+  ctx.reply("Welcome To Daily Medium Article Bot!");
+  return ctx.reply(
+    "commands: /subscribe - to subscribe and /unsubscribe - to unsubscribe"
+  );
+});
 // bot.hears("id", (ctx) => {
 //   console.log(ctx.chat.id);
 //   chatId = ctx.chat.id;
@@ -46,11 +51,11 @@ cron.schedule("* * * * *", function () {
 // );
 bot.help((ctx) => ctx.reply("Send me a sticker"));
 bot.on("sticker", (ctx) => ctx.reply("👍"));
-bot.hears("hi", (ctx) => {
-  idArr.push(ctx.message.chat.id);
-  console.log(idArr);
-  return ctx.reply("Hey there");
-});
+// bot.hears("hi", (ctx) => {
+//   idArr.push(ctx.message.chat.id);
+//   console.log(idArr);
+//   return ctx.reply("Hey there");
+// });
 bot.launch();
 
 //chatId = 964424301
@@ -66,6 +71,11 @@ bot.hears("/subscribe", (ctx) => {
     console.log(idArr);
     return ctx.reply("successfully subscribed!");
   }
+});
+bot.hears("/unsubscribe", (ctx) => {
+  idArr = idArr.filter((user) => user !== ctx.message.chat.id);
+  console.log(idArr);
+  return ctx.reply("successfully unsubscribed, see you again!");
 });
 bot.hears("id", (ctx) => {
   return ctx.reply(ctx.chat.id);
