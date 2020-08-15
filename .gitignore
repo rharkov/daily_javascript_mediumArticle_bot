@@ -1,0 +1,5 @@
+#removing secrets.js from commit
+secrets.js
+
+#removing node_modules from commit
+node_modules

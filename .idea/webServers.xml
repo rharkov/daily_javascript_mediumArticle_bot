@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5e66448c-28fa-4c67-982f-d746846aa6c8" name="mediumTelegramBot" url="http://185.200.241.221">
+        <fileTransfer rootFolder="/root/telegram-bot" accessType="SFTP" host="185.200.241.221" port="22" sshConfigId="b2c168c1-405a-4fa2-bd5a-cdbc7087d938" sshConfig="root@185.200.241.221:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
