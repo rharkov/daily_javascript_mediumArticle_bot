@@ -4,7 +4,7 @@ const pullMedium = require("./index");
 const cron = require("node-cron");
 const User = require("./db/user");
 
-User.sync({ force: true });
+User.sync();
 const bot = new Telegraf(BOT_TOKEN);
 let chatId;
 let idArr = [];
