@@ -7,9 +7,12 @@
   "devDependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
+    "express-generator": "^4.16.1",
     "fs": "0.0.1-security",
     "node-cron": "^2.0.3",
+    "pg": "^8.3.0",
     "puppeteer": "^5.2.1",
+    "sequelize": "^6.3.4",
     "telegraf": "^3.38.0",
     "xml2js": "^0.4.23"
   },
