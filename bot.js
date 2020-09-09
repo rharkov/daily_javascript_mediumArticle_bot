@@ -1,4 +1,4 @@
-const { Telegraf, Telegram } = require("telegraf");
+const { Telegraf } = require("telegraf");
 const BOT_TOKEN = require("./secrets");
 const pullMedium = require("./index");
 const cron = require("node-cron");
@@ -6,8 +6,6 @@ const User = require("./db/user");
 
 User.sync();
 const bot = new Telegraf(BOT_TOKEN);
-let chatId;
-let idArr = [];
 bot.start((ctx) => {
   ctx.reply("Welcome To Daily Medium Article Bot!");
   return ctx.reply(
@@ -19,7 +17,6 @@ let articleLink;
 cron.schedule("* * * * *", function () {
   pullMedium()
     .then(function (result) {
-      // console.log(result);
       articleLink = `[TODAY'S ARTICLE ](${result.rss.channel[0].item[0].link[0]})`;
       (async () => {
         const users = await User.findAll({ attributes: ["chatId"] });
@@ -29,7 +26,6 @@ cron.schedule("* * * * *", function () {
             disable_web_page_preview: false,
           })
         );
-        // console.log("USERS ARR >>> ", users);
       })();
     })
     .catch((err) => console.error(err));
@@ -44,7 +40,6 @@ bot.on("sticker", (ctx) => ctx.reply("👍"));
 bot.hears("/subscribe", async (ctx) => {
   try {
     const userCreated = await User.create({ chatId: ctx.message.chat.id });
-    // console.log(userCreated);
     return ctx.reply("successfully subscribed! Enjoy the knowledge");
   } catch (error) {
     return ctx.reply("you are already subscribed!");
